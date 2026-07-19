@@ -1,4 +1,4 @@
-import math
+import math 
 from abc import ABC, abstractmethod
 
 
@@ -8,17 +8,24 @@ class BaseExercise(ABC):
         self.stage = None
 
     def calculate_angle(self, a, b, c):
-        radians = math.atan2(c[1]-b[1], c[0]-b[0]) - \
-                  math.atan2(a[1]-b[1], a[0]-b[0])
-        angle = abs(math.degrees(radians))
+        ax, ay = a[0] - b[0], a[1] - b[1]
+        cx, cy = c[0] - b[0], c[1] - b[1]
 
-        if angle > 180:
-            angle = 360 - angle
+        dot = ax * cx + ay * cy
 
-        return angle
+        mag_a = math.sqrt(ax ** 2 + ay ** 2)
+        mag_c = math.sqrt(cx ** 2 + cy ** 2)
+
+        if mag_a * mag_c == 0:
+            return 0.0
+
+        cos_angle = max(-1.0, min(1.0, dot / (mag_a * mag_c)))
+
+        return math.degrees(math.acos(cos_angle))
 
     def get_point(self, landmarks, idx):
         p = landmarks[idx]
+
         return (p.x, p.y)
 
     @abstractmethod
