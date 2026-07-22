@@ -1,0 +1,32 @@
+/* =========================================================
+   GLOBAL THEME
+========================================================= */
+
+.stApp {
+  /* background-color: #150221; */
+  background-color: #2f0f54;
+  color: #fff;
+}
+
+[data-testid="stSidebar"] {
+  background-color: #111520;
+}
+
+/* =========================================================
+   TYPOGRAPHY (SCOPED – safer)
+========================================================= */
+
+.block-container,
+.block-container * {
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.block-container {
+  padding: 50px 3rem !important;
+  max-width: 750px !important;
+}
+
