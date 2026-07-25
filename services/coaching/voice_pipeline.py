@@ -19,3 +19,47 @@ class VoicePipeline:
             if depth == "TOO HIGH":
                 return "The user's squat is not deep enough — knees are not bending sufficiently."
 
+            if isinstance(back_angle, (int, float)) and back_angle < 130:
+                return "The user is leaning too far forward during the squat."
+
+        elif exercise == "Push-ups":
+            alignment = metrics.get("body_alignment", "")
+            hip_status = metrics.get("hip_status", "")
+            
+            if alignment == "Poor Form":
+                return "The user's body is not straight during the push-up."
+
+            if hip_status == "SAGGING":
+                return "The user's hips are sagging down during the push-up."
+
+            if hip_status == "PIKED UP":
+                return "The user's hips are too high — lower them to form a straight line."
+
+        elif exercise == "Biceps Curls (Dumbbell)":
+            swing = metrics.get("swing_status", "")
+            shoulder = metrics.get("shoulder_status", "")
+            
+            if swing == "SWINGING":
+                return "The user is swinging their torso during the curl — keep the body still."
+
+            if shoulder == "ELBOW DRIFTING":
+                return "The user's elbow is drifting away from their side during the curl."
+
+        elif exercise == "Shoulder Press":
+            back_arch = metrics.get("back_arch_status", "")
+            extension = metrics.get("extension_status", "")
+            
+            if back_arch == "Excessive Arch":
+                return "The user is arching their lower back excessively during the press."
+
+            if back_arch == "Slight Arch":
+                return "Slight back arch detected — encourage the user to brace their core."
+
+        elif exercise == "Lunges":
+            balance = metrics.get("balance_status", "")
+            
+            if balance == "OFF BALANCE":
+                return "The user is losing balance during the lunge — feet should be hip-width apart."
+
+        return None
+
