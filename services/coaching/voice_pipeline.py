@@ -63,3 +63,32 @@ class VoicePipeline:
 
         return None
 
+    def process_event(self, event, exercise, metrics):
+        issue = self._find_form_issue(exercise, metrics)
+
+        now = time.time()
+
+        is_major_issue = event in ["workout_started", "set_completed", "workout_completed"]
+
+        if not is_major_issue:
+            if not issue:
+                return None
+            
+            if now - self.last_spoken_at < 5:
+                return None
+            
+        text = self.llm.give_feedback(event, issue)
+        voice = self.tts.speak(text)
+
+        self.last_spoken_at = now
+
+        return voice, text
+    
+
+def autoplay_audio(audio_bytes):
+    if not audio_bytes:
+        return
+    
+    st.markdown("<style>[data-testid='stAudio'] {display: none;}</style>", unsafe_allow_html=True)
+    
+    st.audio(audio_bytes, format="audio/mp3", autoplay=True)
