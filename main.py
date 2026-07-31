@@ -56,3 +56,27 @@ def main():
 
 
 
+    workout_started = st.session_state.get("workout_started", False)
+
+    with st.sidebar:
+        st.title("🏋️‍♂️ Apna AI Coach")
+
+        if st.session_state.username:
+            st.caption(f"👤 Login as {st.session_state.username}")
+
+        st.divider()
+        st.subheader("Workout Plan")
+
+        if not workout_started:
+            plan_exercise = st.selectbox("Exercise", options=EXERCISE_OPTIONS, key="plan_exercise")
+
+            plan_sets = st.number_input("Sets", min_value=0, max_value=50, key="plan_sets", step=1)
+
+            plan_reps = st.number_input("Reps per Set", min_value=0, max_value=50, key="plan_reps", step=1)
+
+            st.markdown("")
+
+
+            start_session_button = st.button("Start Workout", width="stretch", key="start_session_button")
+
+
