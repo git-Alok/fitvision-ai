@@ -3,15 +3,19 @@ __pycache__/
 *.pyc
 
 # Virtual environment
-venv/
+.venv/
+venv
+
+# Environment
 .env
 
 # OS files
 .DS_Store
 Thumbs.db
 
+
 # Database
-Main App/data.db
+data.db
 
 # Logs
 *.log
