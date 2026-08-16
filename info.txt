@@ -1,0 +1,22 @@
+uv is a fast Python package manager and project manager created by Astral (the company behind Ruff). Think of it as a modern replacement for tools like pip, venv, and sometimes even poetry.
+
+Why use uv?
+1. 🚀 Much faster than pip
+
+uv is written in Rust, so installing packages is often 10–100x faster than pip.
+
+diff between webRTC(used in this project for live streaming) and websocket
+
+rtc configuration in streamlit webRTC
+NATs in webRTC
+async processing in webrtc
+what is GIL , multithreading , multiprocessing
+stunt server
+
+mediapipe
+
+
+what is videoprocessorBase in streamlit_webrtc
+av.vedio_frame 
+
+grok_ai used for voice feature
